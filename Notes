@@ -21,3 +21,10 @@ nodes:
 - role: worker
 - role: worker
 - role: worker
+
+
+Instructions for gsutil:
+
+curl https://sdk.cloud.google.com | bash
+exec -l $SHELL
+gcloud init

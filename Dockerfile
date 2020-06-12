@@ -23,6 +23,8 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s 
 RUN chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
 RUN ln -sf /usr/local/bin/kubectl /usr/local/bin/k
 
+RUN yes|curl https://sdk.cloud.google.com | bash
+
 COPY kind.yaml /root/kind.yaml
 
 COPY Notes /root/Notes
