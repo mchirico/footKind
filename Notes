@@ -22,9 +22,11 @@ nodes:
 - role: worker
 - role: worker
 
-
+---  EXTRA: Note included ---
 Instructions for gsutil:
 
 curl https://sdk.cloud.google.com | bash
 exec -l $SHELL
 gcloud init
+
+gcloud auth configure-docker
