@@ -1,3 +1,5 @@
+![Schedule](https://github.com/mchirico/footKind/workflows/Schedule/badge.svg)
+
 # footKind
 
 This repo creates the public image on [https://quay.io/repository/mchirico/kind](https://quay.io/repository/mchirico/kind)
