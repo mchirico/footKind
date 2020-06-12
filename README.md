@@ -1,4 +1,5 @@
 ![Schedule](https://github.com/mchirico/footKind/workflows/Schedule/badge.svg)
+![Docker Image CI](https://github.com/mchirico/footKind/workflows/Docker%20Image%20CI/badge.svg)
 
 # footKind
 
