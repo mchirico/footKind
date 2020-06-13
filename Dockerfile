@@ -27,5 +27,10 @@ RUN yes|curl https://sdk.cloud.google.com | bash
 
 COPY kind.yaml /root/kind.yaml
 
+
+RUN curl  https://raw.githubusercontent.com/mchirico/ct/master/src/ct.c  > ct.c
+RUN gcc ct.c -o /usr/local/bin/ct -lpthread
+RUN rm ct.c
+
 COPY Notes /root/Notes
 
