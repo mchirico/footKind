@@ -6,6 +6,7 @@
 This repo creates the public image on [https://quay.io/repository/mchirico/kind](https://quay.io/repository/mchirico/kind)
 for testing kubernetes inside of a docker running container.
 
+The steps below assume you have [weaveworks/footloose](https://github.com/weaveworks/footloose) installed.
 
 ## Steps to get up and running
 ```
