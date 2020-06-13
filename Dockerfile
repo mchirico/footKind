@@ -12,7 +12,9 @@ RUN yum install -y docker iptables git gcc golang wget emacs && yum clean all
 RUN wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz 
 RUN tar -C /usr/local -xzf go1.14.4.linux-amd64.tar.gz
 RUN rm -f go1.14.4.linux-amd64.tar.gz
+
 COPY .bash_profile /root/.bash_profile
+COPY .bashrc /root/.bashrc
 
 
 
