@@ -12,6 +12,9 @@ This image has the following software installed:
 2) kind
 3) Google sdk
 4) Updated PATH for Go
+5) Emacs
+6) ct
+7) gcc
 
 ## Steps to get up and running
 
