@@ -25,8 +25,6 @@ nodes:
 ---  EXTRA: Note included ---
 Instructions for gsutil:
 
-curl https://sdk.cloud.google.com | bash
-exec -l $SHELL
-gcloud init
 
+gcloud init
 gcloud auth configure-docker
