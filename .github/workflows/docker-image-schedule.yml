@@ -16,5 +16,5 @@ jobs:
       run: |
         docker login -u="mchirico" -p=${{ secrets.DOCKER }} quay.io
         make
-	docker push quay.io/mchirico/kind
+        docker push quay.io/mchirico/kind
 
