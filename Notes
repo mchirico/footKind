@@ -22,6 +22,10 @@ nodes:
 - role: worker
 - role: worker
 
+Ref:
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+
 ---  EXTRA: Note included ---
 Instructions for gsutil:
 
