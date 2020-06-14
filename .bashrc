@@ -17,3 +17,6 @@ if [ -f '/root/google-cloud-sdk/path.bash.inc' ]; then . '/root/google-cloud-sdk
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/root/google-cloud-sdk/completion.bash.inc' ]; then . '/root/google-cloud-sdk/completion.bash.inc'; fi
+source <(kubectl completion bash)
+alias k=kubectl
+complete -F __start_kubectl k
