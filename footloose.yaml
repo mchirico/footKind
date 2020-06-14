@@ -8,6 +8,7 @@ machines:
     name: knode%d
     portMappings:
     - containerPort: 22
+      hostPort: 9822
     privileged: true
     volumes:
     - type: volume
