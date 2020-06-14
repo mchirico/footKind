@@ -11,6 +11,7 @@ Kind config:
 
 kind create cluster --config kind.yaml
 
+k create deployment --image-nginx nginx --dry-run -o yaml
 
 # a cluster with 2 control-plane nodes and 3 workers
 kind: Cluster
