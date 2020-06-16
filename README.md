@@ -41,6 +41,8 @@ curl -L https://git.io/Jf5go -o footloose.yaml
 footloose create
 footloose ssh root@knode0
 
-systemctl start docker
+# Note: docker is started automatically
+
 kind create cluster --config kind.yaml
 ```
+
