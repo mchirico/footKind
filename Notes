@@ -33,3 +33,16 @@ Instructions for gsutil:
 
 gcloud init
 gcloud auth configure-docker
+
+
+Attach to node:
+
+Step 1:
+  Get container id
+  
+     docker ps -a
+
+Step 2:
+   Attach to container id. Here assume container id is b807c588c6f2
+   
+     docker exec -it b807c588c6f2 /bin/bash
