@@ -3,10 +3,15 @@
 
 # footKind
 
-This repo creates the public image on [https://quay.io/repository/mchirico/kind](https://quay.io/repository/mchirico/kind)
-for testing kubernetes inside of a docker running container.
+This repo creates two public images
 
-This image has the following software installed:
+-  [https://quay.io/repository/mchirico/kind](https://quay.io/repository/mchirico/kind)
+-  [https://quay.io/repository/mchirico/ubuntu](https://quay.io/repository/mchirico/ubuntu)
+
+Both contain docker and `kind` software for running K8s
+
+
+The mchirico/kind has the following software installed:
 
 1) Go 1.14.4
 2) kind
@@ -20,8 +25,19 @@ This image has the following software installed:
 
 The steps below assume you have weaveworks/footloose installed.
 
+### mchirico/kind
 ```
 curl -L https://git.io/JfH6A -o footloose.yaml
+footloose create
+footloose ssh root@knode0
+
+systemctl start docker
+kind create cluster --config kind.yaml
+```
+
+### mchirico/ubuntu
+```
+curl -L https://git.io/Jf5go -o footloose.yaml
 footloose create
 footloose ssh root@knode0
 
