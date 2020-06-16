@@ -14,6 +14,16 @@ Kind config:
 
 kind create cluster --config kind.yaml
 
+  or, if you want Ingress
+
+
+Do these two steps:
+
+  kind create cluster --config kindIngress.yaml
+  k apply -f deployNginxIngress.yaml
+
+  k get po --all-namespaces
+
 k create deployment --image-nginx nginx --dry-run -o yaml
 
 # a cluster with 2 control-plane nodes and 3 workers
@@ -49,3 +59,4 @@ Step 2:
    Attach to container id. Here assume container id is b807c588c6f2
    
      docker exec -it b807c588c6f2 /bin/bash
+
