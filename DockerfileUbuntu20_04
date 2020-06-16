@@ -1,0 +1,71 @@
+FROM ubuntu:20.04
+
+ENV container docker
+
+# Don't start any optional services except for the few we need.
+RUN find /etc/systemd/system \
+    /lib/systemd/system \
+    -path '*.wants/*' \
+    -not -name '*journald*' \
+    -not -name '*systemd-tmpfiles*' \
+    -not -name '*systemd-user-sessions*' \
+    -exec rm \{} \;
+
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    dbus systemd openssh-server net-tools iproute2 \
+    iputils-ping curl wget vim-tiny sudo \
+    docker iptables wget git && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+
+ENV GOPATH /gopath
+ENV PATH /gopath/bin:$PATH:/usr/local/go/bin:/gopath/bin
+RUN mkdir -p /gopath/bin
+RUN mkdir -p /gopath/src
+
+RUN wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go1.14.4.linux-amd64.tar.gz
+RUN rm -f go1.14.4.linux-amd64.tar.gz
+
+COPY .bash_profile /root/.bash_profile
+COPY .bashrc /root/.bashrc
+
+RUN GO111MODULE="on" go get sigs.k8s.io/kind@v0.8.1
+
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+RUN chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
+RUN ln -sf /usr/local/bin/kubectl /usr/local/bin/k
+
+RUN yes|curl https://sdk.cloud.google.com | bash
+
+COPY kind.yaml /root/kind.yaml
+COPY Notes /root/Notes
+
+RUN >/etc/machine-id
+RUN >/var/lib/dbus/machine-id
+
+
+EXPOSE 22
+
+RUN systemctl set-default multi-user.target
+RUN systemctl mask \
+      dev-hugepages.mount \
+      sys-fs-fuse-connections.mount \
+      systemd-update-utmp.service \
+      systemd-tmpfiles-setup.service \
+      console-getty.service
+RUN systemctl disable \
+      networkd-dispatcher.service
+
+# This container image doesn't have locales installed. Disable forwarding the
+# user locale env variables or we get warnings such as:
+#  bash: warning: setlocale: LC_ALL: cannot change locale
+RUN sed -i -e 's/^AcceptEnv LANG LC_\*$/#AcceptEnv LANG LC_*/' /etc/ssh/sshd_config
+
+# https://www.freedesktop.org/wiki/Software/systemd/ContainerInterface/
+STOPSIGNAL SIGRTMIN+3
+
+CMD ["/bin/bash"]
+
