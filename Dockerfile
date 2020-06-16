@@ -29,7 +29,7 @@ RUN ln -sf /usr/local/bin/kubectl /usr/local/bin/k
 RUN yes|curl https://sdk.cloud.google.com | bash
 
 COPY kind.yaml /root/kind.yaml
-
+COPY kindIngress.yaml /root/kindIngress.yaml
 
 RUN curl  https://raw.githubusercontent.com/mchirico/ct/master/src/ct.c  > ct.c
 RUN gcc ct.c -o /usr/local/bin/ct -lpthread
