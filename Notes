@@ -2,6 +2,9 @@
  docker run busybox echo 'Hello, World!'
  docker ps -a
 
+
+systemctl status
+
 Sample commit to this image:
 
  docker commit -m "Updated image" -a "Mike Chirico" 1556f00a2ecf quay.io/mchirico/kind
