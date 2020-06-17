@@ -52,11 +52,14 @@ Attach to node:
 
 Step 1:
   Get container id
-  
+
      docker ps -a
 
 Step 2:
    Attach to container id. Here assume container id is b807c588c6f2
-   
+
      docker exec -it b807c588c6f2 /bin/bash
 
+Remove unnecessary images:
+
+     docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
