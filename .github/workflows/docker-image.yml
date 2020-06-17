@@ -2,9 +2,8 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches: [ master n ]
+
 
 jobs:
 
@@ -12,6 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    if: github.actor == github.event.repository.owner.login
     steps:
     - uses: actions/checkout@v2
 
