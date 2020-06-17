@@ -15,6 +15,9 @@ RUN wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf go1.14.4.linux-amd64.tar.gz
 RUN rm -f go1.14.4.linux-amd64.tar.gz
 
+RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
+RUN yum install -y nodejs && yum clean all
+
 COPY .bash_profile /root/.bash_profile
 COPY .bashrc /root/.bashrc
 
