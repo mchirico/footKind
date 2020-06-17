@@ -35,5 +35,6 @@ RUN curl  https://raw.githubusercontent.com/mchirico/ct/master/src/ct.c  > ct.c
 RUN gcc ct.c -o /usr/local/bin/ct -lpthread
 RUN rm ct.c
 
+COPY deployNginxIngress.yaml /root/deployNginxIngress.yaml
 COPY Notes /root/Notes
 
